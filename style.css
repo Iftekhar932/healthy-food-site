@@ -3,15 +3,28 @@ body {
   background: #f2f0f0;
 }
 section {
-  margin: 5.6rem;
+  margin-bottom: 5.6rem;
 }
-
 a {
   text-decoration: none;
   background: linear-gradient(50deg, crimson 51%, black 10%);
   color: #eee;
   padding: 0.5rem;
   font-size: 1rem;
+}
+
+/*************** CSS for Nav **************/
+nav {
+  background: black;
+  margin-top: -.6rem;
+  padding: .5rem;
+}
+nav a {
+  background-image: linear-gradient(170deg, red 30%, black 40%);
+  padding: 1rem;
+  display: block;
+  border: 2px solid black;
+  font-size: 1.2rem;
 }
 
 /**********  CSS for 'food-order' section  *************/
@@ -93,4 +106,39 @@ div.aligned-boxes {
   height: auto;
 }
 
+/* CSS for 'visit us" section */
+section.visit-us {
+  background-image: url(images/food/Project\ Cover4.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 50vh;
+  text-align: center;
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 2rem;
+}
+section.visit-us h1 {
+  font-family: Haettenschweiler;
+}
+
 /* CSS for footer */
+footer {
+  background-color: black;
+  color: white;
+  width: 100%;
+  padding: 6rem 0rem;
+}
+.footer-texts {
+  text-align: center;
+}
+footer h2 span {
+  color: orangered;
+}
+footer h2 span.gray {
+  color: gray;
+}
+footer a {
+  background-image: linear-gradient(50deg, black 50%, red 50%);
+}
