@@ -71,9 +71,12 @@ section.food-order span {
 
 /******************* CSS for 'recipies' section *******************/
 
-.top-texts h1,
+.top-texts h1{
+  font-size: 2rem;
+  text-align: center;
+}
 .top-texts p {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   text-align: center;
   margin-bottom: 3rem;
 }
