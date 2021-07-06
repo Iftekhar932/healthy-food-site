@@ -1,0 +1,40 @@
+body{
+    font-family: monospace,tahoma,georgia,verdana,arial;
+    background: #f2f0f0;
+}
+section{
+    margin: 5.6rem;
+    border: 4px solid black;
+    /* padding: 5rem; */
+}
+
+/**********  CSS for 'food-order' section  *************/
+.food-order{
+    display: flex;
+}
+section.food-order span{
+    color: orangered
+}
+a{
+    text-decoration: none;
+    /* border: inset; */
+    background: linear-gradient(50deg, crimson 51%,black 10%);
+    color: #eee;
+    padding: .5rem;
+}
+.img-container{
+    max-width: 50%;
+    float: right;
+    padding: 0 0 0 8rem;
+}
+.img-container img{
+    width: 60%;
+}
+.texts-container{
+    max-width: 50%;
+    padding: 0 8rem 0 0;
+    float: left
+}
+.texts-container h1{
+    font-size: 2rem;
+}
