@@ -1,40 +1,96 @@
-body{
-    font-family: monospace,tahoma,georgia,verdana,arial;
-    background: #f2f0f0;
+body {
+  font-family: monospace, tahoma, georgia, verdana, arial;
+  background: #f2f0f0;
 }
-section{
-    margin: 5.6rem;
-    border: 4px solid black;
-    /* padding: 5rem; */
+section {
+  margin: 5.6rem;
+}
+
+a {
+  text-decoration: none;
+  background: linear-gradient(50deg, crimson 51%, black 10%);
+  color: #eee;
+  padding: 0.5rem;
+  font-size: 1rem;
 }
 
 /**********  CSS for 'food-order' section  *************/
-.food-order{
-    display: flex;
+
+.food-order {
+  width: 60%;
+  margin: 3rem 16rem auto auto;
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: space-between;
 }
-section.food-order span{
-    color: orangered
+section.food-order span {
+  color: orangered;
 }
-a{
-    text-decoration: none;
-    /* border: inset; */
-    background: linear-gradient(50deg, crimson 51%,black 10%);
-    color: #eee;
-    padding: .5rem;
+.texts-container {
+  width: 50%;
+  padding: 0 8rem 0 0;
 }
-.img-container{
-    max-width: 50%;
-    float: right;
-    padding: 0 0 0 8rem;
+.img-container {
+  width: 50%;
 }
-.img-container img{
-    width: 60%;
+.img-container img {
+  width: 60%;
 }
-.texts-container{
-    max-width: 50%;
-    padding: 0 8rem 0 0;
-    float: left
+
+/*********** CSS for second 'contact' section ************/
+
+.contacts {
+  width: 100%;
+  margin: 3rem auto;
+
+  background-image: url(images/shapes/Frame\ 58.jpg);
 }
-.texts-container h1{
-    font-size: 2rem;
+.container {
+  display: flex;
+  font-size: 1.5rem;
+  margin: auto;
+  width: 60%;
+  height: 30vh;
 }
+.container .img-container {
+  margin-top: 1rem;
+}
+
+/******************* CSS for 'recipies' section *******************/
+
+.top-texts h1,
+.top-texts p {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.box-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 60%;
+  margin: auto;
+}
+div.aligned-boxes p {
+  font-size: 1rem;
+}
+div.aligned-boxes {
+  width: 250px;
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  box-shadow: 1px 1px 22px -3px;
+  font-size: 1rem;
+}
+.aligned-boxes .img-container {
+  width: 100%;
+}
+.aligned-boxes .img-container img {
+  width: 100%;
+  height: auto;
+}
+
+/* CSS for footer */
