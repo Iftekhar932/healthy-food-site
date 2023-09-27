@@ -7,17 +7,22 @@ section {
 }
 a {
   text-decoration: none;
+  color: white;
+}
+.linkButton {
+  text-decoration: none;
   background: linear-gradient(50deg, crimson 51%, black 10%);
   color: #eee;
   padding: 0.5rem;
   font-size: 1rem;
+  color: white;
 }
 
 /*************** CSS for Nav **************/
 nav {
   background: black;
-  margin-top: -.6rem;
-  padding: .5rem;
+  margin-top: -0.6rem;
+  padding: 0.5rem;
 }
 nav a {
   background-image: linear-gradient(170deg, red 30%, black 40%);
@@ -71,7 +76,7 @@ section.food-order span {
 
 /******************* CSS for 'recipies' section *******************/
 
-.top-texts h1{
+.top-texts h1 {
   font-size: 2rem;
   text-align: center;
 }
@@ -81,9 +86,11 @@ section.food-order span {
   margin-bottom: 3rem;
 }
 .box-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 3;
+  grid-template-rows: 3;
   width: 60%;
   margin: auto;
 }
@@ -95,8 +102,6 @@ div.aligned-boxes {
   border-radius: 20px;
   background-color: rgb(255, 255, 255);
   padding: 1rem;
-  display: flex;
-  flex-direction: column;
   margin: auto;
   box-shadow: 1px 1px 22px -3px;
   font-size: 1rem;

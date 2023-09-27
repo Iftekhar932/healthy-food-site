@@ -1,35 +1,49 @@
 // HTML Elements
 const foodBoxContainer = document.getElementById("boxContainerID");
+const searchBox = document.getElementById("searchTextBox");
+
 // food api fetch
-// const url = `https://www.themealdb.com/api/json/v1/1/search.php?f=a`;
+let searchText;
+const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
 const getDetails = async () => {
   try {
     let foods;
-    const response = await fetch("./data.json");
+    const response = await fetch(url + searchText);
     const result = await response.json();
+
     result.meals.map((foodInfo) => {
       foods = foodInfo;
-    });
+      console.log(foods);
 
-    // single box HTML
-    const singleFoodBox = `<div class="aligned-boxes">
-<div class="img-container">
-  <img src="${foods.strMealThumb}" alt="" />
-</div>
-<div class="texts">
-  <h1>${foods.strMeal}</h1>
-  <p>
-${foods.strInstructions}
-  </p>
-</div>
-</div>`;
-    foodBoxContainer.innerHTML = singleFoodBox;
+      // single box HTML
+      // <div class='aligned-boxes'>
+      const singleFoodBox = `
+    <div class="img-container">
+      <img src="${foods.strMealThumb}" alt="" />
+    </div>
+    <div class="texts">
+      <h1>${foods.strMeal}</h1>
+      <p>
+    ${foods.strInstructions.slice(0, 180)}
+      </p>
+      </div>`;
+      // </div>
+
+      const alignedBoxes = document.createElement("div");
+      alignedBoxes.className = "aligned-boxes";
+      alignedBoxes.innerHTML = singleFoodBox;
+      foodBoxContainer.appendChild(alignedBoxes);
+    });
   } catch (error) {
     console.error(error);
   }
 };
-getDetails();
+
+searchBox.addEventListener("blur", (e) => {
+  searchText = e.target.value;
+  getDetails();
+});
 
 // Setting data and appending elements in HTML body
 // idMeal,,strCategory,strArea, strIngredient1(ingredients has to be filtered in an array),strInstructions ,strMeasure3(same as ingredients),strSource,strYoutube
