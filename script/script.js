@@ -1,42 +1,38 @@
 // HTML Elements
-const foodBoxContainer = document.getElementById("box-containerID");
-
+const foodBoxContainer = document.getElementById("boxContainerID");
 // food api fetch
-const url = `https://www.themealdb.com/api/json/v1/1/search.php?f=a`;
+// const url = `https://www.themealdb.com/api/json/v1/1/search.php?f=a`;
 
-/* foodData.filter((d) => {
-	if (d.includes("ingredients")) console.log(d);
-}); */
-
-let foodData;
 const getDetails = async () => {
   try {
-    const response = await fetch(url);
+    let foods;
+    const response = await fetch("./data.json");
     const result = await response.json();
-    foodData = result.meals;
-  } catch (error) {
-    console.error(error);
-  }
-  return foodData;
-};
-foodData = getDetails();
+    result.meals.map((foodInfo) => {
+      foods = foodInfo;
+    });
 
-console.log("✨ 🌟  foodData:", foodData);
-
-// Setting data and appending elements in HTML body
-// idMeal,,strCategory,strArea, strIngredient1(ingredients has to be filtered in an array),strInstructions ,strMeasure3(same as ingredients),strSource,strYoutube
-const singleFoodBox = `<div class="aligned-boxes">
+    // single box HTML
+    const singleFoodBox = `<div class="aligned-boxes">
 <div class="img-container">
-  <img src="${strMealThumb}" alt="" />
+  <img src="${foods.strMealThumb}" alt="" />
 </div>
 <div class="texts">
-  <h1>Recipe Title</h1>
+  <h1>${foods.strMeal}</h1>
   <p>
-	I always use JimmyDean chocolates,they are tasty,<br />
-	enough to make ice-cream,cake,biscuits and whatsoever....
+${foods.strInstructions}
   </p>
 </div>
 </div>`;
+    foodBoxContainer.innerHTML = singleFoodBox;
+  } catch (error) {
+    console.error(error);
+  }
+};
+getDetails();
+
+// Setting data and appending elements in HTML body
+// idMeal,,strCategory,strArea, strIngredient1(ingredients has to be filtered in an array),strInstructions ,strMeasure3(same as ingredients),strSource,strYoutube
 
 /* 
 
