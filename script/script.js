@@ -1,9 +1,10 @@
 // HTML Elements
 const foodBoxContainer = document.getElementById("boxContainerID");
 const searchBox = document.getElementById("searchTextBox");
+const singleFoodDetail = document.getElementById("foodDetails");
 
+// function for "recipes.html" page to scroll on click
 function scroller(direction) {
-  // return nestedElement.scrollTo(0), nestedElement.scrollHeight;
   direction === "bottom"
     ? window.scrollTo(0, document.body.scrollHeight)
     : window.scrollBy(document.body.scrollHeight, 0);
@@ -31,10 +32,11 @@ const getDetails = async () => {
       <h1>${foods.strMeal}</h1>
       <p>
     ${foods.strInstructions.slice(0, 170)}... \n
-    <a href='/'><b>See more</b></a>
+    <a href='/singleFood.html' ><b>See more</b></a>
     </p>
-      </div>`;
+    </div>`;
 
+// browse every matched food and display
       const alignedBoxes = document.createElement("div");
       alignedBoxes.className = "aligned-boxes";
       alignedBoxes.innerHTML = singleFoodBox;
