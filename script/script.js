@@ -17,7 +17,6 @@ const getDetails = async () => {
       console.log(foods);
 
       // single box HTML
-      // <div class='aligned-boxes'>
       const singleFoodBox = `
     <div class="img-container">
       <img src="${foods.strMealThumb}" alt="" />
@@ -25,10 +24,10 @@ const getDetails = async () => {
     <div class="texts">
       <h1>${foods.strMeal}</h1>
       <p>
-    ${foods.strInstructions.slice(0, 180)}
-      </p>
+    ${foods.strInstructions.slice(0, 170)}... \n
+    <a href='/'><b>See more</b></a>
+    </p>
       </div>`;
-      // </div>
 
       const alignedBoxes = document.createElement("div");
       alignedBoxes.className = "aligned-boxes";
@@ -40,9 +39,12 @@ const getDetails = async () => {
   }
 };
 
-searchBox.addEventListener("blur", (e) => {
+searchBox.addEventListener("keyup", (e) => {
   searchText = e.target.value;
-  getDetails();
+  if (searchText === "") {
+    return;
+  }
+  if (e.keyCode === 13) getDetails();
 });
 
 // Setting data and appending elements in HTML body

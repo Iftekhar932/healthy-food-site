@@ -1,5 +1,5 @@
 body {
-  font-family: monospace, tahoma, georgia, verdana, arial;
+  font-family: Haettenschweiler, monospace, tahoma, georgia, verdana, arial;
   background: #f2f0f0;
 }
 section {
@@ -7,7 +7,6 @@ section {
 }
 a {
   text-decoration: none;
-  color: white;
 }
 .linkButton {
   text-decoration: none;
@@ -19,8 +18,8 @@ a {
 }
 
 /*************** CSS for Nav **************/
-nav {
-  background: black;
+nav a {
+  color: white;
   margin-top: -0.6rem;
   padding: 0.5rem;
 }
@@ -74,7 +73,7 @@ section.food-order span {
   margin-top: 1rem;
 }
 
-/******************* CSS for 'recipies' section *******************/
+/******************* CSS for 'recipes' section *******************/
 
 .top-texts h1 {
   font-size: 2rem;
@@ -89,22 +88,21 @@ section.food-order span {
   display: grid;
   justify-content: center;
   align-items: center;
-  grid-template-columns: 3;
-  grid-template-rows: 3;
   width: 60%;
   margin: auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  grid-area: none;
 }
 div.aligned-boxes p {
   font-size: 1rem;
 }
 div.aligned-boxes {
-  width: 250px;
-  border-radius: 20px;
+  width: 16rem;
+  border-radius: 1.3rem;
   background-color: rgb(255, 255, 255);
   padding: 1rem;
-  margin: auto;
   box-shadow: 1px 1px 22px -3px;
-  font-size: 1rem;
 }
 .aligned-boxes .img-container {
   width: 100%;
@@ -112,6 +110,17 @@ div.aligned-boxes {
 .aligned-boxes .img-container img {
   width: 100%;
   height: auto;
+}
+
+.searchTextBox {
+  margin: 2.5rem auto;
+  display: flex;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  transition: 100ms;
+}
+input.searchTextBox:focus {
+  outline: 3px solid #333;
 }
 
 /* CSS for 'visit us" section */
@@ -149,4 +158,5 @@ footer h2 span.gray {
 }
 footer a {
   background-image: linear-gradient(50deg, black 50%, red 50%);
+  color: white;
 }
