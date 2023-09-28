@@ -2,6 +2,13 @@
 const foodBoxContainer = document.getElementById("boxContainerID");
 const searchBox = document.getElementById("searchTextBox");
 
+function scroller(direction) {
+  // return nestedElement.scrollTo(0), nestedElement.scrollHeight;
+  direction === "bottom"
+    ? window.scrollTo(0, document.body.scrollHeight)
+    : window.scrollBy(document.body.scrollHeight, 0);
+}
+
 // food api fetch
 let searchText;
 const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
@@ -14,7 +21,6 @@ const getDetails = async () => {
 
     result.meals.map((foodInfo) => {
       foods = foodInfo;
-      console.log(foods);
 
       // single box HTML
       const singleFoodBox = `
@@ -39,7 +45,7 @@ const getDetails = async () => {
   }
 };
 
-searchBox.addEventListener("keyup", (e) => {
+searchBox?.addEventListener("keyup", (e) => {
   searchText = e.target.value;
   if (searchText === "") {
     return;

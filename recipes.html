@@ -11,9 +11,9 @@
   <body>
     <!-- Nav Section -->
     <nav id="top">
-      <a href="#to-bottom">To Bottom</a>
-      <a href="#my-Recipes">My Recipes</a>
-      <a href="#visit-us">Visit Us</a>
+      <a href="/index.html">Home</a>
+      <a href="#" onClick="scroller('top')">My Recipes</a>
+      <a href="#" onClick="scroller('bottom')">To Bottom</a>
     </nav>
 
     <!-- Recipes section -->
@@ -26,12 +26,12 @@
         </p>
       </div>
 
-      <!-- div's should have rounded border and shadows -->
       <input
         type="text"
         class="searchTextBox"
         id="searchTextBox"
         name="searchBox"
+        placeholder=" Search food by name &#128269;"
         required
       />
       <div class="box-container" id="boxContainerID"></div>

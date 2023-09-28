@@ -1,6 +1,10 @@
+html {
+  scroll-behavior: smooth;
+}
 body {
   font-family: Haettenschweiler, monospace, tahoma, georgia, verdana, arial;
   background: #f2f0f0;
+  margin: 0;
 }
 section {
   margin-bottom: 5.6rem;
@@ -18,24 +22,32 @@ a {
 }
 
 /*************** CSS for Nav **************/
-nav a {
-  color: white;
-  margin-top: -0.6rem;
-  padding: 0.5rem;
+nav {
+  display: flex;
+  margin: auto;
+  margin: auto;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  place-content: center;
+  background: orangered;
+  opacity: 0.8;
 }
 nav a {
-  background-image: linear-gradient(170deg, red 30%, black 40%);
+  /* background-image: linear-gradient(170deg, red 30%, black 40%); */
   padding: 1rem;
   display: block;
-  border: 2px solid black;
   font-size: 1.2rem;
+  margin-top: -0.6rem;
+  padding: 1.5rem;
+  color: black;
 }
 
 /**********  CSS for 'food-order' section  *************/
 
 .food-order {
   width: 60%;
-  margin: 3rem 16rem auto auto;
+  margin: 6rem 16rem auto auto;
   display: flex;
   font-size: 1.5rem;
   justify-content: space-between;
@@ -59,7 +71,6 @@ section.food-order span {
 .contacts {
   width: 100%;
   margin: 3rem auto;
-
   background-image: url(images/shapes/Frame\ 58.jpg);
 }
 .container {
@@ -74,6 +85,9 @@ section.food-order span {
 }
 
 /******************* CSS for 'recipes' section *******************/
+.Recipes {
+  margin-top: 5rem;
+}
 
 .top-texts h1 {
   font-size: 2rem;
