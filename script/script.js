@@ -67,6 +67,7 @@ const getDetails = async () => {
         });
         const ingredientName = ingredientsNames.map((ingredient) => {
           console.log(ingredient);
+
           const individualFoodDetails = `
           <div class="aligned-box">
           <div class="img-container">
@@ -80,7 +81,7 @@ const getDetails = async () => {
             <p>
            ${foods.strInstructions}
             </p>
-            <p id='ingredientsNames'>${ingredient}</p>
+            <p id='ingredientsNames'>${ingredientsNames}</p>
           </div>
           <iframe
             src="https://www.youtube.com/embed/6R8ffRRJcrg"
