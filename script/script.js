@@ -21,9 +21,9 @@ const getDetails = async () => {
     const response = await fetch(url + searchText);
     const result = await response.json();
 
-    result.meals.map((foodInfo) => {
+    result.meals.map(async (foodInfo) => {
       const foods = foodInfo;
-      // single box HTML
+      // single box model HTML
       const singleFoodBox = `
     <div class="img-container">
       <img src="${foods.strMealThumb}" alt="" />
@@ -40,48 +40,62 @@ const getDetails = async () => {
       alignedBoxes.innerHTML = singleFoodBox;
       foodBoxContainer.appendChild(alignedBoxes);
 
-      alignedBoxes.onclick = () => console.log(foods.idMeal);
+      /* 
+      // ingredients collection
+      let ingredientsObj = {}; */
 
-      /* alignedBoxes.addEventListener("click", async (e) => {
-        let food;
-        const response = await fetch(urlByID + foods.idMeal);
-        const result = await response.json();
-
-        food = result.meals;
-        food.map((foodDetails) => {
-          const k = Object.keys(foodDetails);
-          k.map((kName) => {
-            if (kName.includes("Ingredient")) {
-              const ingredients = foodDetails[kName];
-            }
-          });
-        });
-
-        const individualFoodDetails = `
-        <div class="aligned-boxes">
-        <div class="img-container">
-          <img
-            src="${foods.strMealThumb}"
-            alt=""
-          />
-        </div>
-        <div class="texts">
-          <h1>${foods.strMeal}</h1>
-          <p>
-         ${foods.strInstructions}
-          </p>
-
-        </div>
-        <iframe
-          src="https://www.youtube.com/embed/6R8ffRRJcrg"
-          frameborder=""
-          width="100%"
-          height="auto"
-          allowfullscreen
-        ></iframe>
-      </div>
-        `;
+      // object's one
+      /* k.map((kName) => {
+        if (kName.includes("Ingredient")) {
+          const ingredients = foods[kName];
+          ingredientsObj[kName] = ingredients;
+          console.log(ingredients);
+        }
       }); */
+
+      let ingredientsNames = [];
+      alignedBoxes.onclick = async () => {
+        const response = await fetch(urlByID + foods?.idMeal);
+        const result = await response.json();
+        // array's one
+        const k = Object.keys(result.meals[0]);
+        k.map((kName) => {
+          if (kName.includes("Ingredient")) {
+            if (foods[kName] !== "" && foods[kName] !== null)
+              ingredientsNames.push(foods[kName]);
+          }
+        });
+        const ingredientName = ingredientsNames.map((ingredient) => {
+          console.log(ingredient);
+          const individualFoodDetails = `
+          <div class="aligned-box">
+          <div class="img-container">
+            <img
+              src="${foods.strMealThumb}"
+              alt=""
+            />
+          </div>
+          <div class="texts">
+            <h1>${foods.strMeal}</h1>
+            <p>
+           ${foods.strInstructions}
+            </p>
+            <p id='ingredientsNames'>${ingredient}</p>
+          </div>
+          <iframe
+            src="https://www.youtube.com/embed/6R8ffRRJcrg"
+            frameborder=""
+            width="100%"
+            height="auto"
+            allowfullscreen
+          ></iframe>
+        </div>
+          `;
+          /* const ingredientDisplayElement =document.getElementById("ingredientsNames");
+            ingredientDisplayElement.innerHTML = individualFoodDetails; */
+          foodBoxContainer.innerHTML = individualFoodDetails;
+        });
+      };
     });
   } catch (error) {
     console.error(error);
