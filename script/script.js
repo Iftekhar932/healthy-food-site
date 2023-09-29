@@ -13,16 +13,17 @@ function scroller(direction) {
 // food api fetch
 let searchText;
 const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+const urlByID = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
 
 const getDetails = async () => {
   try {
+    // browse every matched food and display
     let foods;
     const response = await fetch(url + searchText);
     const result = await response.json();
 
     result.meals.map((foodInfo) => {
       foods = foodInfo;
-
       // single box HTML
       const singleFoodBox = `
     <div class="img-container">
@@ -32,15 +33,53 @@ const getDetails = async () => {
       <h1>${foods.strMeal}</h1>
       <p>
     ${foods.strInstructions.slice(0, 170)}... \n
-    <a href='/singleFood.html' ><b>See more</b></a>
     </p>
     </div>`;
 
-// browse every matched food and display
       const alignedBoxes = document.createElement("div");
       alignedBoxes.className = "aligned-boxes";
       alignedBoxes.innerHTML = singleFoodBox;
       foodBoxContainer.appendChild(alignedBoxes);
+
+      alignedBoxes.addEventListener("click", async (e) => {
+        let food;
+        const response = await fetch(urlByID + foods.idMeal);
+        const result = await response.json();
+        food = result.meals;
+        food.map((foodDetails) => {
+          const k = Object.keys(foodDetails);
+          k.map((kName) => {
+            if (kName.includes("Ingredient")) {
+              const ingredients = foodDetails[kName];
+            }
+          });
+        });
+
+        const individualFoodDetails = `
+        <div class="aligned-boxes">
+        <div class="img-container">
+          <img
+            src="${foods.strMealThumb}"
+            alt=""
+          />
+        </div>
+        <div class="texts">
+          <h1>${foods.strMeal}</h1>
+          <p>
+         ${foods.strInstructions}
+          </p>
+
+        </div>
+        <iframe
+          src="https://www.youtube.com/embed/6R8ffRRJcrg"
+          frameborder=""
+          width="100%"
+          height="auto"
+          allowfullscreen
+        ></iframe>
+      </div>
+        `;
+      });
     });
   } catch (error) {
     console.error(error);
@@ -52,7 +91,9 @@ searchBox?.addEventListener("keyup", (e) => {
   if (searchText === "") {
     return;
   }
-  if (e.keyCode === 13) getDetails();
+  if (e.key === "Enter") {
+    getDetails();
+  }
 });
 
 // Setting data and appending elements in HTML body
@@ -88,4 +129,13 @@ www.themealdb.com/api/json/v1/1/filter.php?c=Seafood
 Filter by Area
 www.themealdb.com/api/json/v1/1/filter.php?a=Canadian
 
+*/
+/*
+/*
+
+arr.map(f=> {
+  const see = f.hasOwnProperty('ingredients')
+  console.log(see)
+
+})
 */
