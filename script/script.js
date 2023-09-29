@@ -18,12 +18,11 @@ const urlByID = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
 const getDetails = async () => {
   try {
     // browse every matched food and display
-    let foods;
     const response = await fetch(url + searchText);
     const result = await response.json();
 
     result.meals.map((foodInfo) => {
-      foods = foodInfo;
+      const foods = foodInfo;
       // single box HTML
       const singleFoodBox = `
     <div class="img-container">
@@ -41,10 +40,13 @@ const getDetails = async () => {
       alignedBoxes.innerHTML = singleFoodBox;
       foodBoxContainer.appendChild(alignedBoxes);
 
-      alignedBoxes.addEventListener("click", async (e) => {
+      alignedBoxes.onclick = () => console.log(foods.idMeal);
+
+      /* alignedBoxes.addEventListener("click", async (e) => {
         let food;
         const response = await fetch(urlByID + foods.idMeal);
         const result = await response.json();
+
         food = result.meals;
         food.map((foodDetails) => {
           const k = Object.keys(foodDetails);
@@ -79,7 +81,7 @@ const getDetails = async () => {
         ></iframe>
       </div>
         `;
-      });
+      }); */
     });
   } catch (error) {
     console.error(error);
