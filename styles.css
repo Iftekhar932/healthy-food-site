@@ -1,0 +1,77 @@
+html {
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+}
+body {
+  font-family: Haettenschweiler, monospace, tahoma, georgia, verdana, arial;
+  background: #f2f0f0;
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+
+/* nav */
+nav {
+  display: flex;
+  place-content: center;
+  justify-content: space-evenly;
+  width: 100%;
+  background: orangered;
+  padding: 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 200%;
+  font-weight: 800;
+}
+nav a {
+  padding: 1rem;
+}
+/* nav */
+
+/* Recipes section */
+.recipes {
+  display: flex;
+  place-items: center;
+  flex-direction: column;
+  font-size: 2rem;
+  padding: 2rem;
+}
+.top-texts {
+  text-align: center;
+}
+
+.box-container {
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+}
+.aligned-boxes {
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+  padding: 1.2rem;
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.aligned-boxes .img-container {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.img-container img {
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Recipes section */
+
+@media screen and (min-width: 768px) {
+  nav {
+    padding: 0.5rem;
+  }
+}

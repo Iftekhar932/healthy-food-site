@@ -69,7 +69,7 @@ const getDetails = async () => {
           console.log(ingredient);
 
           const individualFoodDetails = `
-          <div class="aligned-box">
+          <div class="aligned-boxes">
           <div class="img-container">
             <img
               src="${foods.strMealThumb}"
@@ -78,7 +78,7 @@ const getDetails = async () => {
           </div>
           <div class="texts">
             <h1>${foods.strMeal}</h1>
-            <p>
+            <p class='singleBoxDescription'>
            ${foods.strInstructions}
             </p>
             <p id='ingredientsNames'>${ingredientsNames}</p>
@@ -87,7 +87,7 @@ const getDetails = async () => {
             src="https://www.youtube.com/embed/6R8ffRRJcrg"
             frameborder=""
             width="100%"
-            height="auto"
+            height="300px"
             allowfullscreen
           ></iframe>
         </div>
@@ -109,6 +109,7 @@ searchBox?.addEventListener("keyup", (e) => {
     return;
   }
   if (e.key === "Enter") {
+    foodBoxContainer.textContent = "";
     getDetails();
   }
 });
