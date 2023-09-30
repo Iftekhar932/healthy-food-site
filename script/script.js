@@ -81,7 +81,8 @@ const getDetails = async () => {
             <p class='singleBoxDescription'>
            ${foods.strInstructions}
             </p>
-            <p id='ingredientsNames'>${ingredientsNames}</p>
+            <h4>Ingredients:</h1>
+            <p class='ingredientsNames'>${ingredientsNames}</p>
           </div>
           <iframe
             src="https://www.youtube.com/embed/6R8ffRRJcrg"
@@ -109,6 +110,8 @@ searchBox?.addEventListener("keyup", (e) => {
     return;
   }
   if (e.key === "Enter") {
+    document.getElementsByTagName("nav")[0].children[2].style.display =
+      "initial";
     foodBoxContainer.textContent = "";
     getDetails();
   }

@@ -29,6 +29,9 @@ nav {
 nav a {
   padding: 1rem;
 }
+nav a:nth-child(3) {
+  display: none;
+}
 /* nav */
 
 /* Recipes section */
@@ -38,6 +41,7 @@ nav a {
   flex-direction: column;
   font-size: 2rem;
   padding: 2rem;
+  margin-top: 6rem;
 }
 .top-texts {
   text-align: center;
@@ -52,7 +56,7 @@ nav a {
 .aligned-boxes {
   height: auto;
   width: 100%;
-  max-width: 100%;
+  max-width: 33rem;
   padding: 1.2rem;
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -66,6 +70,17 @@ nav a {
   height: auto;
   width: 100%;
   max-width: 100%;
+}
+.texts .ingredientsNames {
+  word-wrap: break-word;
+}
+
+input[name="searchBox"]:focus {
+  outline: 1px solid orangered;
+}
+input[name="searchBox"] {
+  margin: 1rem auto;
+  padding: 1rem;
 }
 
 /* Recipes section */
