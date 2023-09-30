@@ -53,6 +53,7 @@ const getDetails = async () => {
         }
       }); */
 
+      //  names of ingredients
       let ingredientsNames = [];
       alignedBoxes.onclick = async () => {
         const response = await fetch(urlByID + foods?.idMeal);
@@ -65,10 +66,19 @@ const getDetails = async () => {
               ingredientsNames.push(foods[kName]);
           }
         });
-        const ingredientName = ingredientsNames.map((ingredient) => {
-          console.log(ingredient);
 
-          const individualFoodDetails = `
+        //  measurements of ingredients
+        let ingredientMeasures = [];
+        const k2 = Object.keys(result.meals[0]);
+        k.map((kName) => {
+          if (kName.includes("strMeasure")) {
+            if (foods[kName] !== "" && foods[kName] !== null)
+              ingredientMeasures.push(foods[kName]);
+          }
+        });
+
+        // const ingredientName = ingredientsNames.map((ingredient) => {
+        const individualFoodDetails = `
           <div class="aligned-boxes">
           <div class="img-container">
             <img
@@ -82,7 +92,7 @@ const getDetails = async () => {
            ${foods.strInstructions}
             </p>
             <h4>Ingredients:</h1>
-            <p class='ingredientsNames'>${ingredientsNames}</p>
+            <p class='ingredientsNames'>${ingredientsNames}: </p>
           </div>
           <iframe
             src="https://www.youtube.com/embed/6R8ffRRJcrg"
@@ -93,10 +103,10 @@ const getDetails = async () => {
           ></iframe>
         </div>
           `;
-          /* const ingredientDisplayElement =document.getElementById("ingredientsNames");
+        /* const ingredientDisplayElement =document.getElementById("ingredientsNames");
             ingredientDisplayElement.innerHTML = individualFoodDetails; */
-          foodBoxContainer.innerHTML = individualFoodDetails;
-        });
+        foodBoxContainer.innerHTML = individualFoodDetails;
+        // });
       };
     });
   } catch (error) {

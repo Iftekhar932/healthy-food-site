@@ -81,6 +81,7 @@ input[name="searchBox"]:focus {
 input[name="searchBox"] {
   margin: 1rem auto;
   padding: 1rem;
+  font-size: 1.8rem;
 }
 /* Recipes section */
 
