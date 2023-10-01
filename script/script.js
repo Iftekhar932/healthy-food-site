@@ -26,7 +26,7 @@ const getDetails = async () => {
       // single box model HTML
       const singleFoodBox = `
     <div class="img-container">
-      <img src="${foods.strMealThumb}" alt="" />
+      <img loading='lazy' src="${foods.strMealThumb}" alt="" />
     </div>
     <div class="texts">
       <h1>${foods.strMeal}</h1>
@@ -40,72 +40,70 @@ const getDetails = async () => {
       alignedBoxes.innerHTML = singleFoodBox;
       foodBoxContainer.appendChild(alignedBoxes);
 
-      // object's one (ingredients and measures)
-      /*  const k = Object.keys(foods);
-      let ingredientsObj = {};
-      let measuresObj = {};
-      k.map((kName) => {
-        if (kName.includes("Ingredient")) {
-          const ingredients = foods[kName];
-          if (ingredients !== "" || null) ingredientsObj[kName] = ingredients;
-        }
-        if (kName.includes("Measure")) {
-          const measures = foods[kName];
-          console.log("✨ 🌟  k.map  measures:", measures);
-          if (measures !== "" || null) measuresObj[kName] = measures;
-        }
-      }); */
-
-      // array's ones
-      //  names of ingredients
-      let ingredientsNames = [];
-
       alignedBoxes.onclick = async () => {
+        // finding food by id
         const response = await fetch(urlByID + foods?.idMeal);
         const result = await response.json();
+        const food = result.meals[0];
 
+        let ingredientWithMeasures = {};
+        /* let ingredientMeasures = [];
+        let ingredientsNames = [];
         const k = Object.keys(result.meals[0]);
+        console.log(k);
         k.map((kName) => {
           if (kName.includes("Ingredient")) {
             if (foods[kName] !== "" && foods[kName] !== null)
               ingredientsNames.push(foods[kName]);
-            console.log("✨ 🌟  k.map  ingredientsNames:", ingredientsNames);
           }
-        });
-        //  measurements of ingredients
-        let ingredientMeasures = [];
-        const k2 = Object.keys(result.meals[0]);
-        k.map((kName) => {
           if (kName.includes("strMeasure")) {
             if (foods[kName] !== "" && foods[kName] !== null)
               ingredientMeasures.push(foods[kName]);
-            console.log(
-              "✨ 🌟  k.map  ingredientMeasures:",
-              ingredientMeasures
-            );
+          }
+        }); */
+        let mainKeys;
+        const k = Object.keys(food);
+        k.map((keys) => {
+          if (keys.includes("strIngredient")) {
+            ingredientWithMeasures[food[keys]] = "";
+            mainKeys = keys;
           }
         });
+
+        const measureKeys = Object.keys(food);
+        measureKeys.map((measureKey) => {
+          if (measureKey.includes("strMeasure")) {
+            // console.log(measureKey, " main key " + mainKeys);
+            ingredientWithMeasures[mainKeys] = `${food[measureKey]}`;
+          }
+          console.log(ingredientWithMeasures);
+        });
+        // we need 'embed' instead of 'watch' in the link here for iframe tag
+        let youtubeLink = food.strYoutube.replace("/watch?v=", "/embed/");
 
         // const ingredientName = ingredientsNames.map((ingredient) => {
         const individualFoodDetails = `
           <div class="aligned-boxes">
           <div class="img-container">
             <img
-              src="${foods.strMealThumb}"
+              src="${food.strMealThumb}"
               alt=""
             />
           </div>
           <div class="texts">
-            <h1>${foods.strMeal}</h1>
+            <h1>${food.strMeal}</h1>
             <p class='singleBoxDescription'>
-           ${foods.strInstructions}
+           ${food.strInstructions}
             </p>
             <h4>Ingredients:</h1>
-            <p class='ingredientsNames'> : </p>
+            <p class='ingredientsNames'>
+           </p>
           </div>
+          <a href='${food.strSource}'>Click here for Source </a>
+          </br>
+          </br>
           <iframe
-            src="https://www.youtube.com/embed/6R8ffRRJcrg"
-            src=${foods.strYoutube}
+            src=${youtubeLink}
             frameborder=""
             width="100%"
             height="300px"
