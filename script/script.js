@@ -40,33 +40,38 @@ const getDetails = async () => {
       alignedBoxes.innerHTML = singleFoodBox;
       foodBoxContainer.appendChild(alignedBoxes);
 
-      /* 
-      // ingredients collection
-      let ingredientsObj = {}; */
-
-      // object's one
-      /* k.map((kName) => {
+      // object's one (ingredients and measures)
+      /*  const k = Object.keys(foods);
+      let ingredientsObj = {};
+      let measuresObj = {};
+      k.map((kName) => {
         if (kName.includes("Ingredient")) {
           const ingredients = foods[kName];
-          ingredientsObj[kName] = ingredients;
-          console.log(ingredients);
+          if (ingredients !== "" || null) ingredientsObj[kName] = ingredients;
+        }
+        if (kName.includes("Measure")) {
+          const measures = foods[kName];
+          console.log("✨ 🌟  k.map  measures:", measures);
+          if (measures !== "" || null) measuresObj[kName] = measures;
         }
       }); */
 
+      // array's ones
       //  names of ingredients
       let ingredientsNames = [];
+
       alignedBoxes.onclick = async () => {
         const response = await fetch(urlByID + foods?.idMeal);
         const result = await response.json();
-        // array's one
+
         const k = Object.keys(result.meals[0]);
         k.map((kName) => {
           if (kName.includes("Ingredient")) {
             if (foods[kName] !== "" && foods[kName] !== null)
               ingredientsNames.push(foods[kName]);
+            console.log("✨ 🌟  k.map  ingredientsNames:", ingredientsNames);
           }
         });
-
         //  measurements of ingredients
         let ingredientMeasures = [];
         const k2 = Object.keys(result.meals[0]);
@@ -74,6 +79,10 @@ const getDetails = async () => {
           if (kName.includes("strMeasure")) {
             if (foods[kName] !== "" && foods[kName] !== null)
               ingredientMeasures.push(foods[kName]);
+            console.log(
+              "✨ 🌟  k.map  ingredientMeasures:",
+              ingredientMeasures
+            );
           }
         });
 
@@ -92,10 +101,11 @@ const getDetails = async () => {
            ${foods.strInstructions}
             </p>
             <h4>Ingredients:</h1>
-            <p class='ingredientsNames'>${ingredientsNames}: </p>
+            <p class='ingredientsNames'> : </p>
           </div>
           <iframe
             src="https://www.youtube.com/embed/6R8ffRRJcrg"
+            src=${foods.strYoutube}
             frameborder=""
             width="100%"
             height="300px"
@@ -103,8 +113,6 @@ const getDetails = async () => {
           ></iframe>
         </div>
           `;
-        /* const ingredientDisplayElement =document.getElementById("ingredientsNames");
-            ingredientDisplayElement.innerHTML = individualFoodDetails; */
         foodBoxContainer.innerHTML = individualFoodDetails;
         // });
       };
