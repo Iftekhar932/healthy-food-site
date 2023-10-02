@@ -46,42 +46,25 @@ const getDetails = async () => {
         const result = await response.json();
         const food = result.meals[0];
 
-        let ingredientWithMeasures = {};
-        /* let ingredientMeasures = [];
-        let ingredientsNames = [];
-        const k = Object.keys(result.meals[0]);
-        console.log(k);
-        k.map((kName) => {
-          if (kName.includes("Ingredient")) {
-            if (foods[kName] !== "" && foods[kName] !== null)
-              ingredientsNames.push(foods[kName]);
-          }
-          if (kName.includes("strMeasure")) {
-            if (foods[kName] !== "" && foods[kName] !== null)
-              ingredientMeasures.push(foods[kName]);
-          }
-        }); */
-        let mainKeys;
-        const k = Object.keys(food);
-        k.map((keys) => {
-          if (keys.includes("strIngredient")) {
-            ingredientWithMeasures[food[keys]] = "";
-            mainKeys = keys;
-          }
-        });
+        const ingredientsWithMeasures = [];
+        for (let i = 1; i <= 20; i++) {
+          const ingredientKey = food[`strIngredient${i}`];
+          const measureValue = food[`strMeasure${i}`];
 
-        const measureKeys = Object.keys(food);
-        measureKeys.map((measureKey) => {
-          if (measureKey.includes("strMeasure")) {
-            // console.log(measureKey, " main key " + mainKeys);
-            ingredientWithMeasures[mainKeys] = `${food[measureKey]}`;
+          if (ingredientKey && measureValue) {
+            ingredientsWithMeasures.push(
+              `<span>${ingredientKey} - ${measureValue}</span> </br>`
+            );
+          } else if (ingredientKey || measureValue) {
+            ingredientsWithMeasures.push("Ingredient Unknown ");
+          } else {
           }
-          console.log(ingredientWithMeasures);
-        });
-        // we need 'embed' instead of 'watch' in the link here for iframe tag
+        }
+        console.log(ingredientsWithMeasures);
+
+        // we need 'embed' instead of 'watch' in the link here for iframe tag so replaced it
         let youtubeLink = food.strYoutube.replace("/watch?v=", "/embed/");
 
-        // const ingredientName = ingredientsNames.map((ingredient) => {
         const individualFoodDetails = `
           <div class="aligned-boxes">
           <div class="img-container">
@@ -92,14 +75,17 @@ const getDetails = async () => {
           </div>
           <div class="texts">
             <h1>${food.strMeal}</h1>
+            <h5>Area: ${food.strArea}</h5>
+            <h5>Category: ${food.strCategory}</h3>
             <p class='singleBoxDescription'>
            ${food.strInstructions}
             </p>
             <h4>Ingredients:</h1>
             <p class='ingredientsNames'>
+            ${ingredientsWithMeasures.join(" </br>")}
            </p>
           </div>
-          <a href='${food.strSource}'>Click here for Source </a>
+          <a href='${food.strSource}'>Click this link for Source </a>
           </br>
           </br>
           <iframe
@@ -112,7 +98,6 @@ const getDetails = async () => {
         </div>
           `;
         foodBoxContainer.innerHTML = individualFoodDetails;
-        // });
       };
     });
   } catch (error) {
