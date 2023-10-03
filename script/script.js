@@ -3,7 +3,7 @@ const foodBoxContainer = document.getElementById("boxContainerID");
 const searchBox = document.getElementById("searchTextBox");
 const singleFoodDetail = document.getElementById("foodDetails");
 
-// function for "recipes.html" page to scroll on click
+// function for page to scroll on click
 function scroller(direction) {
   direction === "bottom"
     ? window.scrollTo(0, document.body.scrollHeight)
@@ -60,13 +60,12 @@ const getDetails = async () => {
           } else {
           }
         }
-        console.log(ingredientsWithMeasures);
 
         // we need 'embed' instead of 'watch' in the link here for iframe tag so replaced it
         let youtubeLink = food.strYoutube.replace("/watch?v=", "/embed/");
 
         const individualFoodDetails = `
-          <div class="aligned-boxes">
+          <div id="aligned-boxes" class="aligned-boxes">
           <div class="img-container">
             <img
               src="${food.strMealThumb}"
@@ -97,7 +96,10 @@ const getDetails = async () => {
           ></iframe>
         </div>
           `;
+        // adding classes for media query responsive design and displaying boxes
+        foodBoxContainer.classList.add("individual-box-container");
         foodBoxContainer.innerHTML = individualFoodDetails;
+        document.getElementById("aligned-boxes").classList.add("individualOne");
       };
     });
   } catch (error) {
@@ -113,6 +115,13 @@ searchBox?.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     document.getElementsByTagName("nav")[0].children[2].style.display =
       "initial";
+
+    // removing classes for media query responsive design and displaying boxes
+    document
+      .getElementById("aligned-boxes")
+      ?.classList?.remove("individualOne");
+    foodBoxContainer?.classList?.remove("individual-box-container");
+
     foodBoxContainer.textContent = "";
     getDetails();
   }

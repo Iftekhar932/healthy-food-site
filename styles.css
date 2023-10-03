@@ -11,6 +11,12 @@ body {
 a {
   text-decoration: none;
 }
+.linkButton {
+  background: linear-gradient(45deg, red 50%, black 50%);
+  text-decoration: none;
+  color: white;
+  padding: 0.4rem;
+}
 
 /* nav */
 nav {
@@ -106,6 +112,13 @@ input[name="searchBox"] {
   margin-top: 6rem;
   gap: 1.5rem;
 }
+.contacts .texts-container {
+  display: inherit;
+  flex-direction: column;
+  place-items: center;
+  place-content: center;
+  max-width: 80%;
+}
 /* contacts section */
 
 /* visit us section */
@@ -114,7 +127,6 @@ input[name="searchBox"] {
   place-items: center;
   flex-direction: column;
   font-size: 2rem;
-  margin-top: 6rem;
   text-align: center;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("./images/food/Project Cover4.png") no-repeat center;
@@ -133,7 +145,7 @@ footer h2 {
   padding: 0;
   margin: 0;
 }
-footer a {
+.linkButton {
   background: linear-gradient(45deg, red 50%, black 50%);
   text-decoration: none;
   color: white;
@@ -145,4 +157,24 @@ footer a {
   nav {
     padding: 0.5rem;
   }
+  /* food order section */
+  .food-order .img-container img {
+    display: none;
+  }
+  /* food order section */
+
+  /* recipes section */
+  .box-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* 👇 this class adds up when an individual box is appended */
+  .individual-box-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .individualOne {
+    grid-column: 3/3;
+    max-width: 50rem;
+  }
+
+  /* recipes section */
 }
