@@ -153,6 +153,7 @@ footer h2 {
 }
 /* footer section */
 
+/***** medium devices *****/
 @media screen and (min-width: 768px) {
   nav {
     padding: 0.5rem;
@@ -171,10 +172,34 @@ footer h2 {
   .individual-box-container {
     grid-template-columns: repeat(1, 1fr);
   }
+  /* 👇 this class adds up when an individual box is appended */
   .individualOne {
     grid-column: 3/3;
     max-width: 50rem;
   }
-
   /* recipes section */
 }
+/***** medium devices *****/
+
+/***** large devices *****/
+@media screen and (min-width: 1268px) {
+  /* food order section */
+  .food-order {
+    flex-direction: row;
+    margin: 5rem auto auto auto;
+    max-width: 90vw;
+    place-content: center;
+  }
+  .food-order .img-container img {
+    max-width: 50rem;
+    display: inline;
+  }
+  /* food order section */
+
+  /* recipes section */
+  div.box-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  /* recipes section */
+}
+/***** large devices ******/

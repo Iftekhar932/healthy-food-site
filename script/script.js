@@ -46,6 +46,7 @@ const getDetails = async () => {
         const result = await response.json();
         const food = result.meals[0];
 
+        // getting 2 object's string values and making an array out of them which'll have elements of those consisting 2 string value's addition
         const ingredientsWithMeasures = [];
         for (let i = 1; i <= 20; i++) {
           const ingredientKey = food[`strIngredient${i}`];
@@ -109,10 +110,13 @@ const getDetails = async () => {
 
 searchBox?.addEventListener("keyup", (e) => {
   searchText = e.target.value;
+  // if blank then nothing happens
   if (searchText === "") {
     return;
   }
+  // if pressed "enter" button with search text input field becomes empty 'bottom' button appears
   if (e.key === "Enter") {
+    e.target.value = "";
     document.getElementsByTagName("nav")[0].children[2].style.display =
       "initial";
 
@@ -122,7 +126,6 @@ searchBox?.addEventListener("keyup", (e) => {
       ?.classList?.remove("individualOne");
     foodBoxContainer?.classList?.remove("individual-box-container");
 
-    foodBoxContainer.textContent = "";
     getDetails();
   }
 });
