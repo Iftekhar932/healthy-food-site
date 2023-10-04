@@ -49,9 +49,6 @@ const getDetails = async () => {
             ingredientsWithMeasures.push(
               `<span>${ingredientKey} - ${measureValue}</span> </br>`
             );
-          } else if (ingredientKey || measureValue) {
-            ingredientsWithMeasures.push("Ingredient Unknown ");
-          } else {
           }
         }
 
