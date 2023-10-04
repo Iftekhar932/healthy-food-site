@@ -3,13 +3,6 @@ const foodBoxContainer = document.getElementById("boxContainerID");
 const searchBox = document.getElementById("searchTextBox");
 const singleFoodDetail = document.getElementById("foodDetails");
 
-// function for page to scroll on click
-function scroller(direction) {
-  direction === "bottom"
-    ? window.scrollTo(0, document.body.scrollHeight)
-    : window.scrollBy(document.body.scrollHeight, 0);
-}
-
 // food api fetch
 let searchText;
 const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
@@ -64,6 +57,13 @@ const getDetails = async () => {
 
         // we need 'embed' instead of 'watch' in the link here for iframe tag so replaced it
         let youtubeLink = food.strYoutube.replace("/watch?v=", "/embed/");
+
+        // function for page to scroll on click
+        function scroller(direction) {
+          direction === "bottom"
+            ? window.scrollTo(0, document.body.scrollHeight)
+            : window.scrollBy(document.body.scrollHeight, 0);
+        }
 
         const individualFoodDetails = `
           <div id="aligned-boxes" class="aligned-boxes">
@@ -125,51 +125,6 @@ searchBox?.addEventListener("keyup", (e) => {
       .getElementById("aligned-boxes")
       ?.classList?.remove("individualOne");
     foodBoxContainer?.classList?.remove("individual-box-container");
-
     getDetails();
   }
 });
-
-// Setting data and appending elements in HTML body
-// idMeal,,strCategory,strArea, strIngredient1(ingredients has to be filtered in an array),strInstructions ,strMeasure3(same as ingredients),strSource,strYoutube
-
-/* 
-
-
-Search meal by name
-www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata
-List all meals by first letter
-www.themealdb.com/api/json/v1/1/search.php?f=a
-Lookup full meal details by id
-www.themealdb.com/api/json/v1/1/lookup.php?i=52772
-Lookup a single random meal
-www.themealdb.com/api/json/v1/1/random.php
-Lookup a selection of 10 random meals (only available to Paypal supporters)
-www.themealdb.com/api/json/v1/1/randomselection.php
-List all meal categories
-www.themealdb.com/api/json/v1/1/categories.php
-Latest Meals (only available to Paypal supporters)
-www.themealdb.com/api/json/v1/1/latest.php
-List all Categories, Area, Ingredients
-www.themealdb.com/api/json/v1/1/list.php?c=list
-www.themealdb.com/api/json/v1/1/list.php?a=list
-www.themealdb.com/api/json/v1/1/list.php?i=list
-Filter by main ingredient
-www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast
-Filter by multi-ingredient (only available to Paypal supporters)
-www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast,garlic,salt
-Filter by Category
-www.themealdb.com/api/json/v1/1/filter.php?c=Seafood
-Filter by Area
-www.themealdb.com/api/json/v1/1/filter.php?a=Canadian
-
-*/
-/*
-/*
-
-arr.map(f=> {
-  const see = f.hasOwnProperty('ingredients')
-  console.log(see)
-
-})
-*/
