@@ -14,7 +14,7 @@ const getDetails = async () => {
     const response = await fetch(url + searchText);
     const result = await response.json();
 
-    result.meals.map(async (foodInfo) => {
+    result?.meals?.map(async (foodInfo) => {
       const foods = foodInfo;
       // single box model HTML
       const singleFoodBox = `
@@ -113,6 +113,9 @@ searchBox?.addEventListener("keyup", (e) => {
   }
   // if pressed "enter" button with search text input field becomes empty 'bottom' button appears
   if (e.key === "Enter") {
+    if (!(foodBoxContainer.childNodes[0] === undefined)) {
+      foodBoxContainer.innerHTML = "";
+    }
     e.target.value = "";
     document.getElementsByTagName("nav")[0].children[2].style.display =
       "initial";
