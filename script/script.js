@@ -55,7 +55,7 @@ const getDetails = async () => {
         // we need 'embed' instead of 'watch' in the link here for iframe tag so replaced it
         let youtubeLink = food.strYoutube.replace("/watch?v=", "/embed/");
 
-        // function for page to scroll on click
+        // function for page to scroll on click used in html file with "onclick()"
         function scroller(direction) {
           direction === "bottom"
             ? window.scrollTo(0, document.body.scrollHeight)
@@ -113,18 +113,19 @@ searchBox?.addEventListener("keyup", (e) => {
   }
   // if pressed "enter" button with search text input field becomes empty 'bottom' button appears
   if (e.key === "Enter") {
-    if (!(foodBoxContainer.childNodes[0] === undefined)) {
-      foodBoxContainer.innerHTML = "";
-    }
-    e.target.value = "";
+    foodBoxContainer.innerHTML = ""; // emptying previous search results
+    e.target.value = ""; // emptying previous search text from input box
+
     document.getElementsByTagName("nav")[0].children[2].style.display =
-      "initial";
+      "initial"; // anchor tag style
 
     // removing classes for media query responsive design and displaying boxes
     document
       .getElementById("aligned-boxes")
       ?.classList?.remove("individualOne");
     foodBoxContainer?.classList?.remove("individual-box-container");
+
+    // function invoked
     getDetails();
   }
 });
