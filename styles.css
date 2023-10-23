@@ -200,6 +200,9 @@ footer h2 {
   div.box-container {
     grid-template-columns: repeat(3, 1fr);
   }
+  .individualOne {
+    grid-column: 2/3;
+  }
   /* recipes section */
 }
 /***** large devices ******/
