@@ -2,7 +2,19 @@
 const foodBoxContainer = document.getElementById("boxContainerID");
 const searchBox = document.getElementById("searchTextBox");
 const singleFoodDetail = document.getElementById("foodDetails");
+const oneClickScrollButtons = document.querySelectorAll(".linkButton");
+console.log("✨ 🌟  oneClickScrollButtons:", oneClickScrollButtons.length);
 
+for (let i = 0; i < oneClickScrollButtons.length; i++) {
+  const element = oneClickScrollButtons[i];
+  element.addEventListener("click", () => {
+    if (element.textContent.includes("top" || "recipes")) {
+      return scroller("top");
+    } else if (element.textContent.includes("bottom")) {
+      return scroller("bottom");
+    }
+  });
+}
 // food api fetch
 let searchText;
 const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
@@ -54,13 +66,6 @@ const getDetails = async () => {
 
         // we need 'embed' instead of 'watch' in the link here for iframe tag so replaced it
         let youtubeLink = food.strYoutube.replace("/watch?v=", "/embed/");
-
-        // function for page to scroll on click used in html file with "onclick()"
-        function scroller(direction) {
-          direction === "bottom"
-            ? window.scrollTo(0, document.body.scrollHeight)
-            : window.scrollBy(document.body.scrollHeight, 0);
-        }
 
         const individualFoodDetails = `
           <div id="aligned-boxes" class="aligned-boxes">
@@ -129,3 +134,11 @@ searchBox?.addEventListener("keyup", (e) => {
     getDetails();
   }
 });
+
+// function for page to scroll on click used in html file with "onclick()"
+function scroller(direction) {
+  console.log("✨ 🌟  scroller  direction:", direction);
+  direction === "bottom"
+    ? window.scrollTo(0, document.body.scrollHeight)
+    : window.scrollBy(document.body.scrollHeight, 0);
+}
