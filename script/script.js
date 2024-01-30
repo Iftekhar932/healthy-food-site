@@ -21,21 +21,23 @@ const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 const urlByID = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
 
 const getDetails = async () => {
-  // loading animation after search
-  foodBoxContainer.innerHTML = "<div class='lds-hourglass'></div>";
+  foodBoxContainer.innerHTML = "<div class='lds-hourglass'></div>"; // loading animation after search
+  foodBoxContainer.style.grid = "none"; // animation centering css added
+
   try {
-    // browse every matched food and display
+    /*  browse every matched food and display */
     const response = await fetch(url + searchText);
     const result = await response.json();
 
     // if no search result found
     if (result.meals == null) {
-      foodBoxContainer.innerHTML = "<p>Not Found</p>"; // ⚠️animation and this text has ⚠️to be centered in 1268px responsive screen⚠️
+      foodBoxContainer.style.grid = "none";
+      foodBoxContainer.innerHTML = "<p >Not Found</p>";
       return;
     }
 
-    // to remove loading animation
-    foodBoxContainer.innerHTML = "";
+    foodBoxContainer.removeAttribute("style"); // animation centering css removed
+    foodBoxContainer.innerHTML = ""; // to remove loading animation
 
     result?.meals?.map(async (foodInfo) => {
       const foods = foodInfo;
