@@ -201,7 +201,7 @@ footer h2 {
 
   /* recipes section */
   div.box-container {
-    grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   }
   .individualOne {
     grid-column: 2/3;
