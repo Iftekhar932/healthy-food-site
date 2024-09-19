@@ -1,3 +1,8 @@
+:root{
+--bright-color:hsl(336, 36%, 30%);
+  --brighter-color:hsl(336, 36%, 40%);
+  --brightest-color:hsl(336, 36%, 60);
+}
 html {
   scroll-behavior: smooth;
   font-size: 62.5%;
@@ -12,12 +17,14 @@ a {
   text-decoration: none;
 }
 .linkButton {
-  background: linear-gradient(45deg, red 50%, black 50%);
+  background: linear-gradient(45deg, var(--bright-color) 40%,var(--brightest-color) 20%,var(--brighter-color) 40%);
   text-decoration: none;
   color: white;
   padding: 0.4rem;
 }
-
+.linkButton:hover {
+  background: linear-gradient(100deg, var(--bright-color) 40%,var(--brightest-color) 20%,var(--brighter-color) 40%);
+}
 /* nav */
 nav {
   display: flex;
@@ -121,6 +128,8 @@ input[name="searchBox"] {
   place-items: center;
   place-content: center;
   max-width: 80%;
+  text-wrap: balance;
+  text-align: center;
 }
 /* contacts section */
 
@@ -149,7 +158,7 @@ footer h2 {
   margin: 0;
 }
 .linkButton {
-  background: linear-gradient(45deg, red 50%, black 50%);
+    background: linear-gradient(45deg, var(--bright-color) 40%,var(--brightest-color) 20%,var(--brighter-color) 40%);
   text-decoration: none;
   color: white;
   padding: 0.4rem;
