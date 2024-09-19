@@ -1,45 +1,74 @@
-:root{
---bright-color:hsl(336, 36%, 30%);
-  --brighter-color:hsl(336, 36%, 40%);
-  --brightest-color:hsl(336, 36%, 60);
+:root {
+  --bright-color: hsl(0, 100%, 30%);
+  --brighter-color: hsl(0, 100%, 40%);
+  --brightest-color: hsl(0, 100%, 60%);
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 html {
   scroll-behavior: smooth;
   font-size: 62.5%;
 }
 body {
-  font-family: Haettenschweiler, monospace, tahoma, georgia, verdana, arial;
-  background: #f2f0f0;
+  font-family: monospace, tahoma, georgia, verdana, arial;
   margin: 0;
   padding: 0;
 }
 a {
   text-decoration: none;
+  color: initial;
+}
+a:not(.linkButton) {
+  color: initial;
 }
 .linkButton {
-  background: linear-gradient(45deg, var(--bright-color) 40%,var(--brightest-color) 20%,var(--brighter-color) 40%);
+  background: linear-gradient(
+    45deg,
+    var(--brightest-color) 20%,
+    var(--bright-color) 40%,
+    var(--brighter-color) 40%
+  );
   text-decoration: none;
-  color: white;
   padding: 0.4rem;
+  transition-duration: 0.5s;
 }
 .linkButton:hover {
-  background: linear-gradient(100deg, var(--bright-color) 40%,var(--brightest-color) 20%,var(--brighter-color) 40%);
+  box-shadow: 0px 0px 4px 4px rgba(234, 40, 40, 0.5);
 }
+
 /* nav */
 nav {
   display: flex;
   place-content: center;
   justify-content: space-evenly;
+  max-width: 100%;
   width: 100%;
-  background: orangered;
+  background: linear-gradient(
+    45deg,
+    var(--brightest-color),
+    var(--bright-color),
+    var(--brightest-color)
+  );
+  background-size: 400% 400%;
+  color: var(--bright-color);
   position: fixed;
   top: 0;
   left: 0;
-  font-size: 200%;
+  font-size: 2rem;
   font-weight: 800;
+  z-index: 1;
+  animation: bgColorMove 10s ease-in-out infinite;
 }
 nav a {
   padding: 1rem;
+}
+nav a:hover {
+  color: white;
 }
 nav a:nth-child(3) {
   display: none;
@@ -63,28 +92,23 @@ nav a:nth-child(3) {
   display: grid;
   place-items: center;
   grid-template-columns: repeat(1, 1fr);
-  gap: 1rem;
+  gap: 2rem;
 }
 .aligned-boxes {
   height: auto;
-  width: 100%;
-  max-width: 33rem;
-  padding: 1.2rem;
+  width: clamp(300px, 100%, 700px);
+  padding: 1.5rem;
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .aligned-boxes:hover {
   cursor: pointer;
-}
-.aligned-boxes .img-container {
-  width: 100%;
-  height: auto;
-  max-width: 100%;
+  box-shadow: 0px 0px 5px 1px rgba(222, 44, 44, 0.5);
+  transform: scale(1.01);
+  transition-duration: 1s;
 }
 .img-container img {
-  height: auto;
-  width: 100%;
-  max-width: 100%;
+  width: clamp(300px, 100%, 700px);
 }
 .texts .ingredientsNames {
   word-wrap: break-word;
@@ -110,6 +134,12 @@ input[name="searchBox"] {
   margin-top: 6rem;
   gap: 1.5rem;
 }
+
+.food-order .img-container {
+  width: clamp(300px, 100%, 600px);
+  text-align: center;
+  margin: auto;
+}
 /* food order section */
 
 /* contacts section */
@@ -122,12 +152,14 @@ input[name="searchBox"] {
   margin-top: 6rem;
   gap: 1.5rem;
 }
+.contacts .img-container img {
+  border-radius: 100%;
+}
 .contacts .texts-container {
-  display: inherit;
   flex-direction: column;
   place-items: center;
-  place-content: center;
-  max-width: 80%;
+  /* max-width: 80%; */
+  width: clamp(300px, 100%, 700px);
   text-wrap: balance;
   text-align: center;
 }
@@ -145,6 +177,7 @@ input[name="searchBox"] {
   color: white;
 }
 /* visit us section */
+
 /* footer section */
 footer {
   background-color: black;
@@ -157,12 +190,6 @@ footer h2 {
   padding: 0;
   margin: 0;
 }
-.linkButton {
-    background: linear-gradient(45deg, var(--bright-color) 40%,var(--brightest-color) 20%,var(--brighter-color) 40%);
-  text-decoration: none;
-  color: white;
-  padding: 0.4rem;
-}
 /* footer section */
 
 /***** medium devices *****/
@@ -171,9 +198,14 @@ footer h2 {
     padding: 0.5rem;
   }
   /* food order section */
-  .food-order .img-container img {
-    display: none;
+  .food-order .img-container {
+    width: clamp(600px);
   }
+  .food-order .img-container img {
+    height: fit-content;
+    object-fit: contain;
+  }
+
   /* food order section */
 
   /* recipes section */
@@ -187,7 +219,11 @@ footer h2 {
   /* 👇 this class adds up when an individual box is appended */
   .individualOne {
     grid-column: 3/3;
-    max-width: 50rem;
+    /* max-width: 50rem; */
+    width: clamp(50rem, 100%, 400px);
+  }
+  .aligned-boxes.individualOne {
+    transform: scale(1);
   }
   /* recipes section */
 }
@@ -197,10 +233,12 @@ footer h2 {
 @media screen and (min-width: 1268px) {
   /* food order section */
   .food-order {
+    width: clamp(600px, 100%, 1200px);
     flex-direction: row;
     margin: 5rem auto auto auto;
-    max-width: 90vw;
-    place-content: center;
+    place-content: unset;
+    justify-content: center;
+    align-items: center;
   }
   .food-order .img-container img {
     max-width: 50rem;
@@ -208,9 +246,35 @@ footer h2 {
   }
   /* food order section */
 
+  /* contacts section */
+  .contacts {
+    align-items: center;
+    place-content: unset;
+    justify-content: center;
+    width: clamp(600px, 100%, 1200px);
+    font-size: 2rem;
+    padding: 2rem;
+    margin-top: 6rem auto auto auto;
+    gap: 1.5rem;
+    margin: auto;
+    flex-direction: row;
+  }
+  .contacts .img-container img {
+    border-radius: 100%;
+  }
+  .contacts .texts-container {
+    flex-direction: column;
+    place-items: center;
+
+    width: clamp(300px, 100%, 700px);
+    text-wrap: balance;
+    text-align: center;
+  }
+  /* contacts section */
+
   /* recipes section */
   div.box-container {
-  grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .individualOne {
     grid-column: 2/3;
@@ -219,12 +283,11 @@ footer h2 {
 }
 /***** large devices ******/
 
-
 /* 
 collected loader animation html & css from this website: https://loading.io/css/
 css below
+👇👇👇👇👇 "hourglass"
 */
-
 .lds-hourglass {
   display: inline-block;
   position: relative;
@@ -256,4 +319,18 @@ css below
     transform: rotate(1800deg);
   }
 }
-/* loader animation */
+/* loader animation above */
+
+@keyframes bgColorMove {
+  from {
+    background-position: 0% 100%;
+  }
+
+  50% {
+    background-position: 150% 0%;
+  }
+
+  to {
+    background-position: 0% 100%;
+  }
+}
