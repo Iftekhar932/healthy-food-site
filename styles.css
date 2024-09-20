@@ -46,22 +46,22 @@ nav {
   display: flex;
   place-content: center;
   justify-content: space-evenly;
-  max-width: 100%;
-  width: 100%;
   background: linear-gradient(
     45deg,
     var(--brightest-color),
     var(--bright-color),
     var(--brightest-color)
   );
-  background-size: 400% 400%;
   color: var(--bright-color);
-  position: fixed;
-  top: 0;
-  left: 0;
+  background-size: 400% 400%;
+  max-width: 100%;
+  width: 100%;
   font-size: 2rem;
   font-weight: 800;
   z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
   animation: bgColorMove 10s ease-in-out infinite;
 }
 nav a {
@@ -96,7 +96,7 @@ nav a:nth-child(3) {
 }
 .aligned-boxes {
   height: auto;
-  width: clamp(300px, 100%, 700px);
+  width: clamp(300px, 32rem, 600px);
   padding: 1.5rem;
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
